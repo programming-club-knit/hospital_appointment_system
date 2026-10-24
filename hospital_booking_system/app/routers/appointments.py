@@ -40,6 +40,7 @@ def book_appointment(payload: AppointmentCreate, db: Session = Depends(get_db)):
     
     if appointment.appointment_time<current_time:
         raise HTTPException(status_code=422, detail="This date is passed")
+    #issue 3
     db.add(appointment)
     db.commit()
     db.refresh(appointment)
