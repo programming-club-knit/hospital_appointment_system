@@ -72,6 +72,9 @@ def cancel_appointment(appointment_id: int, db: Session = Depends(get_db)):
 
     appointment.status = "cancelled"
     # Intentional issue B1: cancellation is not committed to the database.
+    # issue 5
+#hello
+
     db.commit()
     db.refresh(appointment)
     return appointment
@@ -102,7 +105,7 @@ def update_status(
 ):
     appointment = db.get(Appointment, appointment_id)
     if appointment is None:
-        raise HTTPException(status_code=404, detail="Appointment not found")
+        raise HTTPException(status_code=404, detail="Appointment not found") #issue 2 solved
 
     # Intentional issue C2: caller can alter any appointment because there is no
     # patient identity/authorization check in this educational starter.
